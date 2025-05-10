@@ -1,2 +1,64 @@
 # CS403-Assignment-1-solution
-CS403 Assignment 1 solution
+
+Download Here: [CS403 Assignment 1 solution](https://jarviscodinghub.com/assignment/cs403-assignment-1-solution/)
+
+For Custom/Original Work email jarviscodinghub@gmail.com/whatsapp +1(541)423-7793
+
+Preliminary information This is your ﬁrst Scam assignment. To run your code, use the following command: scam assign1.scm At the top of your assignment, place a deﬁnition similar to the following: (define (author) (println “AUTHOR: Rita Recursion rrita@crimson.ua.edu”) ) with the name and email replaced by your own name and email. Deﬁne this function as well, to help with testing your code: (define (exprTest # $expr target) (define result (catch (eval $expr #))) (if (error? result) (println $expr ” is EXCEPTION: ” (result’value) ” (it should be ” target “)”) (println $expr ” is ” result ” (it should be ” target “)”) ) ) For each numbered task (unless otherwise directed), you are to provide a function with a name of the form runN, with the N corresponding to the task number, starting at one (as in run1, run2, etc.). This function is in addition to all other requested functions. These run functions will test your implementation and are to take no arguments. For example, if task 5 is: 5. Implement factorial so that it implements a recursive process. Name your function fact. you should provide a run function similar to: (define (run5) (exprTest (fact 0) 1) (exprTest (fact 3) 6) … ) Woe betide students who provide insuﬃcient testing should their implementations prove to be incorrect! If you do not complete an exercise, do not provide a run function for that exercise. If you omit the run function corresponding to an exercise, it will be assumed that you are skipping that part and you will receive no credit for that exercise.
+When you have completed testing of your run functions, comment out any calls to them (but do not comment out the deﬁnitions).
+Iwillprovideatestscriptwhichperformsminimaltestingofyourimplementation. Ifyourprogramdoesnotpasstheprovided test script without failing, I will not grade your exercise and you will receive zero credit for the assignment. If your program passes the provided test script, it will be graded with a more thorough set of tests.
+It may be of use to know that you can have actual tabs and newlines within a string, as in: (println ” The quick brown fox
+m u p j e
+d
+over the lazy dog
+“)
+which will print out as:
+The quick brown fox
+m u p j e
+d
+over the lazy dog Another useful function for your run function is inspect. Here is an example usage:
+(inspect (+ 2 3)) which produces the output:
+(+ 2 3) is 5 You may not use assignment (assign or set!) in any of the code you write. Nor may you use any looping function such as while or for. You may not use list or arrays. Tasks 1. Explain why if and my-if (deﬁned below) can behave diﬀerently for equivalent, legal inputs. Here is an example of equivalent calls to if and my-if that behave exactly the same, in terms of output: (define x 2) (define a (readInt)) (inspect (if (= a 0) x (/ a x))) (inspect (my-if (= a 0) x (/ a x))) where my-if is deﬁned as (define (my-if a b c) (if (true? a) b c ) ) In particular, give a concrete example in which the behavior is diﬀerent. You will need to come up with speciﬁc cases that show this diﬀerence.
+Your run function should present this example and should explain precisely why the behavior is diﬀerent. 2. Deﬁne a function, named zeno_cost, that computes the price of a ticket for Zeno’s Airlines given the distance d of the ﬂight in stadia, the cost c of the ﬁrst half of the trip in drachma, and a factor f for computing the cost of the rest of the trip. The total cost of a ticket is computed as follows: c drachma for the ﬁrst half of the trip and c×f drachma for the ﬁrst half of the remaining half. Of the part of the trip that still remains, the ﬁrst half of that is c×f ×f drachma. Indeed, the ﬁrst half of the remaining portion is always f times the cost of the previous portion.
+If the distance to be traveled is less than or equal to a daktylos (there are 9,600 daktylos to 1 stadion), then the cost of traveling that distance a ﬁxed cost of 7 drachma. Otherwise, if the cost of traveling half the distance to be traveled is less than or equal to a hemiobol (one-twelfth of a drachma), the cost of traveling the two halves is one hemibool.
+Your zeno_cost function should implement a recursive process. Expect real or integer numbers as arguments. Return the cost (a real number) in drachma.
+2
+3. The Mandelbrot set (for examples, see https://www.softlab.ece.ntua.gr/miscellaneous/mandel/mandel.html is a set of planar points, a point (x,y) being in the set if the following iteration never diverges to inﬁnity: r = r×r−s×s + x and s = 2×r×s + y with r and s both starting out at 0.0. While we can’t iterate forever to check for divergence, there is a simple condition which predicts divergence: if r × r + s× s > 4 is ever true, either r or s will tend to diverge to inﬁnity. Processing of a point continues until divergence is detected or until some threshold number of iterations has been reached. If the threshold is reached, the point is considered to be in the Mandelbrot set. Obviously, the higher the threshold, the higher the conﬁdence that the point actually is in the set. The points not in the Mandelbrot set can be categorized as to their resistancetodivergence. Thesepointsareoftencolorized, apointcoloredblackifitisintheset, redifitisveryresistant to divergence, blue if it immediately diverges, and somewhere in between red and blue for intermediate resistance.
+Deﬁne a function, named mandelbrot-iter, that takes a threshold as its single argument. and returns another function thatcanbeusedtotestwhetherornotapointisintheMandelbrotsetusingthegiventhreshold. Thereturnedfunction takes two arguments, the x-coordinate, and the y-coordinate of the point to be tested and it returns the resistance (i.e., the number of iterations until the divergence test succeeds). The return value should be 0 if the point described by the x- and y-coordinates is in the Mandelbrot set (i.e., reaches the threshold). You should test for divergence before you test for reaching the threshold.
+Example usage: (define mandelbrot-tester (mandelbrot-iter 100)) (if (= (mandelbrot-tester 2 3) 0) (print “point (2,3) is in the Mandelbrot set!\n”) (print “point (2,3) is not in the Mandelbrot set.\n”) ) In the above example, the threshold for determining whether or not a number is in the Mandelbrot set is 100. 4. Deﬁne a function named root3 which uses a binary search algorithm to ﬁnd the cube root a given number. Your functionshouldreturnthecurrentapproximationwhenthecurrentapproximationisindistinguishablefromtheprevious approximation. Your function need only work for non-negative numbers. 5. Deﬁne a function, named crazyTriangle, that prints out n levels of Pascal’s triangle, but with a twist. The leftmost and rightmost numbers at each level are not necessarily ones, as with Pascal’s triangle, but are given as the ﬁrst and second arguments. The third argument is the number of levels to be printed. The output produced by (crazyTriangle 1 1 6) would be Pascal’s triangle: 1 1 1 1 2 1 1 3 3 1 1 4 6 4 1 1 5 10 10 5 1 The output produced by (crazyTriangle 1 2 6) would be 1 1 2 1 3 2 1 4 5 2 1 5 9 7 2 1 6 14 16 9 2 Note that the apex is always the ﬁrst argument.
+Your function must print one level to a line with lower levels above upper levels. Your levels need to be centered around the apex (but don’t worry if the triangle skews rightward with multi-digit numbers). Your function must also minimize any redundant computations and should not overﬂow an integer while computing a triangle entry (unless the entry itself overﬂows).
+3
+6. Currying is the process of providing the arguments to a function at diﬀerent points in time. The result of currying a function is a new function that accepts the last of the remaining, unspeciﬁed arguments. Deﬁne a function, named oppy, that curries a mathematical expression of two binary operators. As an example, these two expressions should evaluate to the same result: (+ x (* y z)) (((((oppy +) x) *) y) z) Note that y and z could be instantiated far later than x. Your implementation will only be tested on expressions of the form given above. 7. The function w, described below, implements Shank’s transform:
+w(f,i) = f(i) if i is zero w(f,i) = S(f,i+1)×S(f,i−1)−S(f,i)2 S(f,i+1)−2×S(f,i)+S(f,i−1) otherwise
+where the function S implements summation:
+S(f,n) =
+n ∑
+i=0
+f(i) Implement w and S using an iterative process with no redundant computations. 8. The ancient Egyptians were perhaps the ﬁrst people on earth to come up with the idea of binary arithmetic when they developed their method of multiplication. The Egyptian Multiplication method is a tabular calculation that lends itself to a straightforward computer implementation. The table starts out with a 1 in column a, the multiplicand in column b and the multiplier in column c. Columns a and c are successively doubled until the value in column a is greater than the value in column b. For example, to multiply 1960 by 56, we generate the following table:
+a b c 1 56 1960 2 56 3920 4 56 7840 8 56 15680 16 56 31360 32 56 62720 64 56 125440
+Atthis point, we add a fourth column initialized to zero and apply the following algorithm. If the number in column a is less than or equal to that of column b, we add column c to column d and subtract column a from column b. Otherwise, we leave the values in b and d unchanged. In either case, we halve (integer division) the values in both columns a and c. We stop when column b becomes zero. At this point, the answer resides in column d.
+a b c d 64 56 125440 0 32 56 62720 0 16 24 31360 62720 8 8 15680 94080 4 0 7840 109760
+Deﬁne a function named egypt* that takes two arguments, the multiplicand and the multiplier and returns the product. Example call: (egypt* 56 1960) ;multiply 56 by 1960 (with no multiplication) (halve 56) ;divide 56 by 2 (with no division) Your method should implement an iterative process for both egypt* and halve. You may not use either multiplication or division in your solution. The halve function must run in sub-linear time.
+4
+9. Consider this inﬁnite fraction:
+1 +
+1
+1 +
+1
+2 +
+1
+1 +
+1
+2 +
+1 1 + … Deﬁne a function called mystery that when given an integer argument n, computes the value of this equation to n terms.
+For example, if n is 0, the function should return 1. For n equal to 1, it should return 1 + 1 1
+or 2. For n equal to 2,
+it should return 1 + 1 1 +
+1 2
+or 5 3. The return value should be cast to a real number. Your function should compute its
+value using a recursive process.
+Your run function should give the value of the equation with an inﬁnite number of terms. 10. The famous Indian mathematician, Ramanujan, asked a question that no one else seemed to be able to solve: what is the value of: √1 + 2·√1 + 3·√1 + 4·√1 + 5·√1 + … carried out to inﬁnity? Instead of answering this question, Ramanujan, gave a solution to the more general problem, the value of: v u u t1 + x·√1 + (x + 1)·√1 + (x + 2)·√1 + (x + 3)·√1 + … carried out to inﬁnity. Deﬁne a function, named ramanujan, which takes as its two arguments the depth of a rational approximation to the above nested expression (as before) and the value of x. For example, if the depth is 0 and x is 3, ramanujan should return 0. If the depth is 1 and x is 3, ramanujan should return the value of √1 + 3 If the depth is 2 and x is 3, the return value should be the value of√1 + 3·√1 + 4 Your function should implement a recursive process. Deﬁne a second function, named iramanujan, with the same semantics but implementing an iterative process. Your run function should give the value of the above expression in terms of x.
+Assignment submission The entire assignment should be contained in a single ﬁle named assign1.scm. Any explanatory text should be in the form of Scam comments, which begin with a semicolon. The ﬁle should load into the Scam interpreter cleanly. The last line of your ﬁle should be: (println “assignment 1 loaded!”) If you do not see the message ”assignment 1 loaded” when executing your ﬁle with the Scam interpreter, then there is an error somewhere that needs to be ﬁxed. If your ﬁle does not load properly (i.e. I do not see the message), you will receive no credit for your work.
+To submit assignments, you need to install the submit system: • linux and cygwin instructions • mac instructions Now delete extraneous ﬁles from your working directory. Finally, while in your working directory, type the command: submit proglan lusth assign1 The submit program will bundle up all the ﬁles in your current directory and ship them to me. Thus it is very important that only the ﬁles related to the assignment are in your directory (you may submit test cases and test scripts). This includes subdirectories as well since all the ﬁles in any subdirectories will also be shipped to me, so be careful. You may submit as many times as you want before the deadline; new submissions replace old submissions.
+
+
